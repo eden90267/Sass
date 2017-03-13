@@ -1,0 +1,65 @@
+@import base/var
+@import base/mixin
+
+.button  
+  color: #fff
+  background-color: $buttonColor
+
+  @media screen and (min-width: 320px) and (max-width: 500px)
+    width: 100%
+  @media screen and (max-width: 320px)
+    width: 100px
+
+  &:hover
+    color: darken(#fff, 10%)
+    color: invert(#fff)
+    background-color: lighten($buttonColor, 10%)
+
+.header
+  font-size: $headerFontSize
+
+  .a
+    width: 100px
+    +coolFontSize(14px, 20px, left)
+
+  .c
+    @extend .a
+
+  .nav
+    @if $navShow
+      display: table
+    @else
+      display: none
+    @for $i from 1 through 10
+      .item-#{$i}
+        font-size: #{$i}px
+    @each $item in $list
+      .#{$item}
+        font-size: 18px
+    @while $types > 0
+      .item
+        font-size: 18px
+      $types: $types - 1
+
+
+
+.content
+  font-size: $headerFontSize
+  .b
+    width: 50px
+    +coolFontSize(14px, 30px, center)
+
+
+.message
+  border: 1px solid #ccc
+  padding: 100px
+  color: #333
+  text-align: center
+
+.success
+  @extend .message
+  border-color: green
+
+.error
+  @extend .message
+  border-color: red
