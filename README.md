@@ -445,3 +445,43 @@ compass install susy
       background-position-x: 0
       background-position-y: -$my-icon-wh * 1
     ```
+
+## Config
+
+look `compass.rb`
+
+增加生產環境壓縮檔案，開發環境則不壓縮(ruby指令撰寫)：
+
+```
+
+...
+environment = :development
+
+# You can select your preferred output style here (can be overridden via the command line):
+output_style = (environment == :production) ? :compressed : :expanded
+...
+
+```
+
+輸出css之後，到底要不要去做一些註解
+
+`line_comments = false`
+
+分法
+
+```
+sass
+  - base
+    - _borwser.sass
+    - _extend.sass
+    - _mixin.sass
+    - _reset.sass
+    - _variable.sass
+  - components：針對每一個區塊的組件作區分
+    - _header-components.sass
+    - _menu-components.sass
+    - _index-components.sass
+    - ...
+  - layout：針對組件重複的東西放到這裡
+  - status：狀態，譬如彈出視窗
+```
