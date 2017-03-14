@@ -10,17 +10,17 @@ Sass必須透過編譯器，轉換成CSS，然後給HTML去做搭配使用。
 
 1. 開資料夾
 
-```
-Example
-  - sass
-  - css
-```
+	```
+	Example
+	  - sass
+	  - css
+	```
 
 2. 開啟terminal，進入到該資料夾，輸入：
 
-```
-sass --watch sass:css
-```
+	```
+	sass --watch sass:css
+	```
 
 3. sass資料夾新增example.sass檔案，即可開始輸入sass指令
 
@@ -162,27 +162,27 @@ $types: 4
 
 1. `_mixin.sass`
 
-```
-
-@mixin coolFontSize($size, $line, $align)
-  font-size: $size
-  line-height: $line
-  text-align: $align
-
-```
+    ```
+    
+    @mixin coolFontSize($size, $line, $align)
+      font-size: $size
+      line-height: $line
+      text-align: $align
+    
+    ```
 
 2. `example.sass`
 
-```
-
-@import base/var
-@import base/mixin
-
-.header
-  font-size: $headerFontSize
-...
-
-```
+    ```
+    
+    @import base/var
+    @import base/mixin
+    
+    .header
+    	font-size: $headerFontSize
+    ...
+    
+    ```
 
 ### Math
 
@@ -233,3 +233,177 @@ $buttonColor: #000
 ```
 
 可再模組化出去。
+
+## Compass
+
+主要是針對CSS3，import後利用mixin來寫一些針對CSS3的語法，可解決一些跨瀏覽器語法的問題。也可以做Layout，or 一些基本設定。
+
+[http://compass-style.org/reference/compass/](http://compass-style.org/reference/compass/)
+
+- `@import "compass/css3"`
+
+### How to Use?
+
+#### install
+
+可透過[官網](http://compass-style.org/install/)去建議專案導入compass方式：
+
+![compass-install](http://i.imgur.com/0vBDagp.png)
+
+```
+$ gem install compass
+$ cd <myproject>
+$ compass install compass --syntax sass --css-dir "css"
+```
+
+`--css-dir`，可選參數，預設是stylesheets，欲知更多請詳見此[官網Doc連結](http://compass-style.org/help/documentation/configuration-reference/)。
+
+---
+
+command line to watch，但每次都要加上options `--css-dir "css"`
+
+```
+$ compass watch --css-dir "css"
+```
+
+所以可以透過**設定檔**方式處理，看`compass help`：
+
+```
+$ compass config
+```
+
+再調整自動產生的檔案`./config/compass.rb`的自想要`css_dir`路徑，再來就可以僅用`compass watch`監控目錄了。
+
+```
+$ compass watch
+```
+
+---
+
+參考連結：
+
+[http://compass-style.org/install/](http://compass-style.org/install/)
+
+
+#### use
+
+舉例：border-radius的CSS3使用，可參考[官網連結](http://compass-style.org/reference/compass/css3/border_radius/)
+
+```
+
+@import compass
+
+.button
+  +border-radius(10px)
+  +opacity(0.7)
+
+```
+
+### Susy
+
+依附在compass其中，可透過Susy來做一些**格線的系統**，可看[官網](http://susydocs.oddbird.net/en/latest/)了解。
+
+可看[Getting Started](http://susydocs.oddbird.net/en/latest/install/)
+
+需用compass來做安裝：
+
+```
+
+# command line
+compass install susy
+
+```
+
+就會產生預設的`style.scss`跟`_grids.scss`。目前還是採用過去的版本，因Susy 2有重大的變化。請見[官網](http://susydocs.oddbird.net/en/latest/upgrade/)。
+
+1. import
+
+	```
+	@import susyone
+	```
+
+2. 設置預設值
+
+	```
+    @charset "utf-8"
+
+    // total width == 960px
+	$total-column: 12   // 欄位的總數
+	$column-width: 60px // 欄位的寬度
+	$gutter-width: 20px // 欄位與欄位之間的距離
+	$grid-padding: 10px // 邊界的距離
+
+	```
+
+    相關susyone指令可以從[這裡](http://susydocs.oddbird.net/en/latest/susyone/)看到。
+
+3. 常用方法
+
+    - 格線
+
+        - +container()
+        - +span-columns(3, 12)
+        - +span-columns(9 omega, 12)
+
+            就會自動幫你計算寬度，不用拿計算機算老半天了
+
+            - omega：最後一個元素在一整行之內，靠右的意思
+
+    - media query
+
+        ```
+        $mobile: 1px 480px 12 // 輸出 (min-width: 1px) and (max-width: 480px)
+        $pad: 481px 720px 12
+        $laptop: 721px 1199px 12
+        $desktop: 1200px 12
+        ```
+
+        - breakpoint
+
+            ```
+            .wrapper
+	            +container()
+	            +at-breakpoint($mobile)
+		            +set-container-width()
+	            +at-breakpoint($pad)
+		            +set-container-width()
+	            +at-breakpoint($laptop)
+		            +set-container-width()
+	            +at-breakpoint($desktop)
+		            +set-container-width()
+
+            .header
+
+              .logo
+                +at-breakpoint($mobile)
+                  +span-columns(12,12)
+                +span-columns(3,12)
+              .nav
+                +at-breakpoint($mobile)
+                  +span-columns(12,12)
+                +span-columns(9 omega,12)
+            ```
+
+            ```
+            .content
+              .img-item
+                +at-breakpoint($mobile)
+                  +isolate-grid(12)
+                +at-breakpoint($pad)
+                  +isolate-grid(6)
+                +at-breakpoint($laptop)
+                  +isolate-grid(4)
+                +at-breakpoint($desktop)
+                  +isolate-grid(3)
+            ```
+
+        - `+susy-grid-background()`
+
+            ````
+            $debug: true
+
+            .wrapper
+              +container()
+              @if $debug
+                +susy-grid-background()
+            ````

@@ -1,0 +1,88 @@
+@charset "utf-8"
+
+@import compass
+@import compass/reset
+@import susyone
+
+$debug: true
+
+$mobile: 1px 480px 12 // 輸出 (min-width: 1px) and (max-width: 480px)
+$pad: 481px 720px 12
+$laptop: 721px 1199px 12
+$desktop: 1200px 12
+
+
+// total width == 960px
+$total-column: 12   // 欄位的總數
+$column-width: 60px // 欄位的寬度
+$gutter-width: 20px // 欄位與欄位之間的距離
+$grid-padding: 10px // 邊界的距離
+
+.wrapper
+	+container()
+	@if $debug
+		+susy-grid-background()
+	+at-breakpoint($mobile)
+		+set-container-width()
+	+at-breakpoint($pad)
+		+set-container-width()
+	+at-breakpoint($laptop)
+		+set-container-width()
+	+at-breakpoint($desktop)
+		+set-container-width()
+
+.header
+
+	.logo
+		+at-breakpoint($mobile)
+			+span-columns(12,12)
+			text-align: center
+		+span-columns(3,12)
+		font-size: 24px
+		line-height: 50px
+
+	.nav
+		+at-breakpoint($mobile)
+			+span-columns(12,12)
+			.list
+				float: none !important
+				display: table
+				margin: 0 auto
+		+span-columns(9 omega,12)
+		.list
+			float: right
+			.item
+				font-size: 16px
+				line-height: 50px
+				text-align: center
+				padding: 0 10px
+				cursor: pointer
+				display: inline-block
+				+transition(all .20s ease-in-out)
+				> a
+					color: #444
+					text-decoration: none
+					+transition(all .20s ease-in-out)
+				&:first-child
+					margin-left: 0
+
+				&:hover
+					background-color: #000
+					+transition(all .20s ease-in-out)
+					> a
+						color: #fff
+						+transition(all .20s ease-in-out)
+
+
+.content
+	.img-item
+		+at-breakpoint($mobile)
+			+isolate-grid(12)
+		+at-breakpoint($pad)
+			+isolate-grid(6)
+		+at-breakpoint($laptop)
+			+isolate-grid(4)
+		+at-breakpoint($desktop)
+			+isolate-grid(3)
+	img
+		width: 100%
