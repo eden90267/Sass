@@ -407,3 +407,41 @@ compass install susy
               @if $debug
                 +susy-grid-background()
             ````
+
+### Compass Sprites
+
+將多張一樣大小的圖片合併為一張，之後再透過定位的方式讀取要的圖片。
+
+[官網連結](http://compass-style.org/help/tutorials/spriting/)
+
+1. 先做監視再進行匯入
+2. import & base usage
+
+    產生合併檔案(不曉得為什麼call all-my-icons-sprites會報錯，不過檔案有產生)
+
+    ```
+    @import "compass/utilities/sprites"
+
+    @import "compass/utilities/sprites"
+    @import "icon/*.png" // compass.rb的image dir要記得設定正確的名稱。(e.g. images_dir = "img")
+    +all-my-icons-sprites
+    ```
+
+    設立icon的class
+
+    ```
+    $my-icon-wh: 14px
+    .my-icon-avatar-1, .my-icon-avatar
+      width: $my-icon-wh
+      height: $my-icon-wh
+      display: inline-block
+      background: url('../img/icon-s0cf6367ccf.png')
+      +background-size(cover)
+
+    .my-icon-avatar-1
+      background-position-x: 0
+      background-position-y: 0
+    .my-icon-avatar-1
+      background-position-x: 0
+      background-position-y: -$my-icon-wh * 1
+    ```
