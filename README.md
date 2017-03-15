@@ -559,6 +559,8 @@ $(function() {
 
 ## Gulp
 
+自動化任務流程工具
+
 1. 下載Node.js，需要npm系統
 2. 安裝gulp-cli
 
@@ -608,3 +610,54 @@ $(function() {
 [https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md)
 
 [https://www.npmjs.com/package/gulp-compass](https://www.npmjs.com/package/gulp-compass)
+
+## Grunt
+
+JavaScript Task Runner，跟gulp差不多，但grunt比較用在大型任務，不適合開發者使用，比較用在之後轉正式機器的環境使用。
+
+1. Install node.js & npm
+
+2. Install the CLI
+
+    ```
+    npm install -g grunt-cli
+    ```
+
+3. Install the grunt、grunt-contrib-compass and grunt-contrib-watch
+
+    ```
+    npm install grunt grunt-contrib-compass grunt-contrib-watch
+    ```
+
+4. 建立gruntfile.js檔案
+
+    ```
+    'use strict';
+
+    module.exports = function(grunt) {
+      grunt.initConfig({
+        compass: {
+          dist: {
+            options: {
+              sassDir: 'sass/',
+              cssDir: 'css/',
+              config: 'config/compass.rb',
+              watch: true
+            }
+          }
+        },
+        watch: {
+          compass: {
+            files: 'sass/*.sass',
+            tasks: ['compass']
+          }
+        }
+      });
+
+      grunt.loadNpmTasks('grunt-contrib-watch');
+      grunt.loadNpmTasks('grunt-contrib-compass');
+      grunt.registerTask('default', 'watch');
+    }
+    ```
+5. command line輸入grunt，即可watch sass檔案，若修改會進行編譯css的動作
+
