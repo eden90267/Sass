@@ -494,6 +494,6 @@ sass
 
 ## Semantic UI
 
-類似Bootstrap，不過沒有提供Sass版本
+類似Bootstrap，不過沒有提供Sass版本，所以要直接html引用css與js。js的部分要先引用jQuery。
 
-Modules>Modal的部分很特別，彈出的視窗不太一樣
+[Modules>Modal](https://semantic-ui.com/modules/modal.html)的部分很特別，彈出的視窗不太一樣
