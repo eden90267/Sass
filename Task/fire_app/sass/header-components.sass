@@ -1,0 +1,75 @@
+@import compass
+
+.header
+  width: 100%
+  height: auto
+  display: table
+  padding: 10px 50px
+  background-color: #1B1C1D
+
+  .menu, .action
+    width: auto
+    display: inline-block
+
+  .menu
+    float: left
+
+    .item
+      float: left
+      color: #ccc
+      font-size: 14px
+      line-height: 30px
+      padding: 5px 15px
+      cursor: pointer
+
+      &:hover, &:active
+        color: #fff
+        border-bottom: 2px solid #fff
+
+  .action
+    float: right
+
+    .item
+      float: left
+      color: #fff
+      font-size: 14px
+      font-weight: bold
+      line-height: 20px
+      padding: 5px 15px
+      margin: 5px
+      border: 2px solid #fff
+      cursor: pointer
+      +border-radius(5px)
+
+      &:hover
+        color: #444
+        background-color: #fff
+
+.content
+  width: 100%
+  height: auto
+  padding: 250px 5%
+
+  > h2
+    color: #fff
+    font-size: 50px
+    font-weight: bold
+    text-align: center
+
+  > h3
+    color: #fff - 10
+    font-size: 24px
+    text-align: center
+    line-height: 50px
+
+  a
+    color: #fff
+    font-size: 18px
+    font-weight: bold
+    line-height: 20px
+    text-align: center
+    padding: 15px 20px
+    display: table
+    margin: 0 auto
+    background-color: #2185D0
+    +border-radius(3px)

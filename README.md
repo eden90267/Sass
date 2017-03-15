@@ -669,3 +669,7 @@ JavaScript Task Runner，跟gulp差不多，但grunt比較用在大型任務，�
 
 詳情請看[官網](http://fireapp.kkbox.com/)。
 
+## final task
+
+仿照[semantic-ui這個](https://semantic-ui.com/examples/homepage.html)實現畫面，透過sass、compass。
+

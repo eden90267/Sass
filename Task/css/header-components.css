@@ -1,0 +1,79 @@
+.header {
+  width: 100%;
+  height: auto;
+  display: table;
+  padding: 10px 50px;
+  background-color: #1B1C1D;
+}
+.header .menu, .header .action {
+  width: auto;
+  display: inline-block;
+}
+.header .menu {
+  float: left;
+}
+.header .menu .item {
+  float: left;
+  color: #ccc;
+  font-size: 14px;
+  line-height: 30px;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+.header .menu .item:hover, .header .menu .item:active {
+  color: #fff;
+  border-bottom: 2px solid #fff;
+}
+.header .action {
+  float: right;
+}
+.header .action .item {
+  float: left;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  padding: 5px 15px;
+  margin: 5px;
+  border: 2px solid #fff;
+  cursor: pointer;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+.header .action .item:hover {
+  color: #444;
+  background-color: #fff;
+}
+
+.content {
+  width: 100%;
+  height: auto;
+  padding: 250px 5%;
+}
+.content > h2 {
+  color: #fff;
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+}
+.content > h3 {
+  color: whitesmoke;
+  font-size: 24px;
+  text-align: center;
+  line-height: 50px;
+}
+.content a {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 20px;
+  text-align: center;
+  padding: 15px 20px;
+  display: table;
+  margin: 0 auto;
+  background-color: #2185D0;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
