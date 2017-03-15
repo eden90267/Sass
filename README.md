@@ -520,3 +520,35 @@ $(function() {
 ```
 
 也可以用compass來製作動畫，就會有適應不同瀏覽器的效果
+
+## icon - fontello
+
+提供icon網站，可以滑鼠拖拉多選後下載。
+
+1. select items & download
+
+2. import
+
+    ```
+    <link rel="stylesheet" type="text/css" href="dist/fontello/css/animation.css">
+    <link rel="stylesheet" type="text/css" href="dist/fontello/css/fontello.css">
+    ```
+
+3. use
+
+    要有`icon-`為前綴
+
+    ```
+    <i class="icon-search"></i>
+    ```
+
+因為`fontello`將`font icon`直接繪成字體，所以他會隨`css`的`color`改變icon顏色與`font-size`改變icon大小。
+
+```
+&:hover
+  background-color: #000
+    +transition(all .20s ease-in-out)
+      > a, i
+        color: #fff
+        +transition(all .20s ease-in-out)
+```
