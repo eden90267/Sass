@@ -552,3 +552,59 @@ $(function() {
         color: #fff
         +transition(all .20s ease-in-out)
 ```
+
+## Git
+
+管理你的程式碼
+
+## Gulp
+
+1. 下載Node.js，需要npm系統
+2. 安裝gulp-cli
+
+    ```
+    npm install -g gulp-cli
+    ```
+
+2. 到指定的專案資料夾
+
+    ```
+    npm install gulp gulp-compass --save-dev
+    ```
+3. 新建gulpfile.js檔案到專案目錄下，並require進來
+
+    ```
+    var gulp = require('gulp');
+    ```
+
+4. 開始寫有關compass相關的任務
+
+   ```
+   var gulp = require('gulp');
+   var compass = require('gulp-compass');
+
+   gulp.task('compass', function() {
+     gulp.src('./sass/*.sass')
+       .pipe(compass({
+         config_file: './config/compass.rb',
+         css: 'css',
+         sass: 'sass'
+       }))
+       .pipe(gulp.dest('./css/'));
+   });
+
+   gulp.task('watch', function() {
+     gulp.watch('./sass/*.sass', ['compass']);
+   });
+
+   gulp.task('default', ['compass', 'watch']);
+   ```
+
+5. command line輸入gulp，即可watch sass檔案，若修改會進行編譯css的動作
+
+---
+參考資料：
+
+[https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md)
+
+[https://www.npmjs.com/package/gulp-compass](https://www.npmjs.com/package/gulp-compass)
