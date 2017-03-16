@@ -581,26 +581,32 @@ $(function() {
 
 4. 開始寫有關compass相關的任務
 
-   ```
-   var gulp = require('gulp');
-   var compass = require('gulp-compass');
+    ```
+    var gulp = require('gulp');
+    var compass = require('gulp-compass');
 
-   gulp.task('compass', function() {
-     gulp.src('./sass/*.sass')
-       .pipe(compass({
-         config_file: './config/compass.rb',
-         css: 'css',
-         sass: 'sass'
-       }))
-       .pipe(gulp.dest('./css/'));
-   });
+    function swallowError (error) {
+        console.log(error.toString());
+        this.emit('end');
+    }
 
-   gulp.task('watch', function() {
-     gulp.watch('./sass/*.sass', ['compass']);
-   });
+    gulp.task('compass', function() {
+        gulp.src('./fire.app/sass/**/*.sass')
+            .pipe(compass({
+                config_file: './fire.app/config.rb',
+                css: './src/main/webapp/resources/css',
+                sass: './fire.app/sass'
+            }))
+            .on('error', swallowError)
+            .pipe(gulp.dest('./src/main/webapp/resources/css'));
+    });
 
-   gulp.task('default', ['compass', 'watch']);
-   ```
+    gulp.task('watch', function() {
+        gulp.watch('./fire.app/sass/**/*.sass', ['compass']);
+    });
+
+    gulp.task('default', ['compass', 'watch']);
+    ```
 
 5. command line輸入gulp，即可watch sass檔案，若修改會進行編譯css的動作
 
